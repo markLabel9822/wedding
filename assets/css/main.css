@@ -8741,3 +8741,20 @@ body.force-mobile .items.style1 > * {
 body.force-mobile .gallery .inner {
 	gap: 0.75rem;
 }
+
+/* iOS LINE specific: avoid vh/object-fit induced zoom on scroll */
+body.line-ios .banner.style1.fullscreen {
+	min-height: auto;
+}
+
+body.line-ios .banner.style1.fullscreen .image {
+	height: auto;
+}
+
+body.line-ios .banner.style1 .image img {
+	position: static;
+	width: 100%;
+	height: auto;
+	object-fit: initial;
+	object-position: initial;
+}

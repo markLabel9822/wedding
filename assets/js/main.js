@@ -37,6 +37,11 @@
 		window.addEventListener('orientationchange', function() {
 			setTimeout(setVh, 250);
 		});
+
+		// Mark iOS LINE for CSS targeting
+		if (isIOS() && isLineInApp()) {
+			$body.addClass('line-ios');
+		}
 	})();
 
 	// Breakpoints.
