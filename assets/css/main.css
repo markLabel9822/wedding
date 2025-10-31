@@ -8918,3 +8918,43 @@ body.force-mobile .banner.style1.fullscreen {
 	min-height: auto !important;
 	height: auto !important;
 }
+
+/* Floating Action Button (RSVP) */
+.fab-rsvp {
+	position: fixed;
+	right: 16px;
+	bottom: 24px;
+	z-index: 1000;
+	display: -moz-inline-flex;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flex;
+	display: inline-flex;
+	-moz-align-items: center;
+	-webkit-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	gap: 0.5rem;
+	background: #ffffff;
+	border-radius: 9999px;
+	padding: 0.625rem 0.9rem;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+	text-decoration: none;
+	color: inherit;
+}
+
+.fab-rsvp__icon .fa-circle {
+	color: #ef4444; /* red circle */
+}
+
+.fab-rsvp__icon .fa-heart {
+	color: #ffffff; /* white heart */
+}
+
+.fab-rsvp__label {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+@media screen and (max-width: 480px) {
+	.fab-rsvp { right: 12px; bottom: 24px; padding: 0.5rem 0.75rem; }
+}
