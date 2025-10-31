@@ -9198,3 +9198,14 @@ body.force-mobile #countdown-section .inner {
 	opacity: 0.75;
 	font-size: 0.9rem;
 }
+
+/* Timeline image */
+#timeline-section .timeline-image {
+	width: 100%;
+	max-width: 430px;
+	height: auto;
+	aspect-ratio: 430 / 250;
+	display: block;
+	margin: 0 auto;
+	object-fit: contain;
+}
