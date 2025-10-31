@@ -44,6 +44,77 @@
 		}
 	})();
 
+	// Countdown to 27 December 2025 (local time, midnight)
+	(function initCountdown() {
+		var target = new Date(2025, 11, 27, 0, 0, 0, 0); // month is 0-based
+		var $days = $('#cd-days'), $hours = $('#cd-hours'), $mins = $('#cd-mins'), $secs = $('#cd-secs');
+
+		if (!$days.length) return;
+
+		function update() {
+			var now = new Date();
+			var diffMs = Math.max(0, target - now);
+			var totalSec = Math.floor(diffMs / 1000);
+			var days = Math.floor(totalSec / 86400);
+			var hours = Math.floor((totalSec % 86400) / 3600);
+			var mins = Math.floor((totalSec % 3600) / 60);
+			var secs = totalSec % 60;
+			$days.text(days);
+			$hours.text(hours.toString().padStart(2, '0'));
+			$mins.text(mins.toString().padStart(2, '0'));
+			$secs.text(secs.toString().padStart(2, '0'));
+		}
+
+		update();
+		setInterval(update, 1000);
+	})();
+
+	// Add to Calendar (ICS download; opens device calendar)
+	(function initAddToCalendar() {
+		var btn = document.getElementById('add-to-calendar');
+		if (!btn) return;
+
+		btn.addEventListener('click', function(e) {
+			e.preventDefault();
+
+			// Event: all-day on 27 Dec 2025
+			var ics = [
+				'BEGIN:VCALENDAR',
+				'VERSION:2.0',
+				'PRODID:-//MARKSAI WEDDING//EN',
+				'BEGIN:VEVENT',
+				'UID:' + Date.now() + '@marksai',
+				'DTSTAMP:' + formatIcsDate(new Date()),
+				'SUMMARY:Mark & Sai — Wedding',
+				'DESCRIPTION:Mark & Sai Wedding Day',
+				'DTSTART;VALUE=DATE:20251227',
+				'DTEND;VALUE=DATE:20251228',
+				'END:VEVENT',
+				'END:VCALENDAR'
+			].join('\r\n');
+
+			var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+			var url = URL.createObjectURL(blob);
+			var a = document.createElement('a');
+			a.href = url;
+			a.download = 'mark-sai-wedding.ics';
+			document.body.appendChild(a);
+			a.click();
+			setTimeout(function(){
+				URL.revokeObjectURL(url);
+				document.body.removeChild(a);
+			}, 0);
+		});
+
+		function formatIcsDate(d) {
+			function pad(n){ return n < 10 ? '0' + n : '' + n; }
+			return d.getUTCFullYear()
+				+ pad(d.getUTCMonth() + 1)
+				+ pad(d.getUTCDate())
+				+ 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+		}
+	})();
+
 	// Breakpoints.
 		breakpoints({
 			xlarge:   [ '1281px',  '1680px' ],
