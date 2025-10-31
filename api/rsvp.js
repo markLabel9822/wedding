@@ -61,7 +61,7 @@ module.exports = async function handler(req, res) {
 		// Insert into Supabase (table name: 'rsvp')
 		// Make sure your Supabase table is named 'rsvp' or update this
 		const { data, error } = await supabase
-			.from('rsvp')
+			.from('register')
 			.insert([rsvpData])
 			.select();
 
