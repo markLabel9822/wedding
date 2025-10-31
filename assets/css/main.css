@@ -2163,11 +2163,11 @@ input, select, textarea {
 		input[type="button"].large,
 		button.large,
 		.button.large {
-			font-size: 0.8rem;
-			height: 4em;
-			line-height: 4em;
+			font-size: 1rem;
+			height: 3.5em;
+			line-height: 3.5em;
 			border-radius: 4em;
-			padding: 0 3em;
+			padding: 0 5em;
 		}
 
 		input[type="submit"].wide,
