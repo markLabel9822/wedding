@@ -16,8 +16,27 @@
 			var vh = window.innerHeight * 0.01;
 			document.documentElement.style.setProperty('--vh', vh + 'px');
 		}
+
+		function isIOS() {
+			return /iP(hone|od|ad)/.test(navigator.platform) ||
+				(/Mac/.test(navigator.platform) && 'ontouchend' in document);
+		}
+
+		function isLineInApp() {
+			return /Line\//i.test(navigator.userAgent || '');
+		}
+
 		setVh();
-		window.addEventListener('resize', setVh);
+
+		// On iOS LINE: don't update on resize (scroll bar show/hide fires resize)
+		if (!(isIOS() && isLineInApp())) {
+			window.addEventListener('resize', setVh);
+		}
+
+		// Still adjust on orientation change
+		window.addEventListener('orientationchange', function() {
+			setTimeout(setVh, 250);
+		});
 	})();
 
 	// Breakpoints.
