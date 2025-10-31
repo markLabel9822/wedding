@@ -114,7 +114,13 @@
 								<img src="images/qrcode.png" alt="QR Code สำหรับมอบของขวัญ" class="gift-qrcode" />
 								<div class="account-info">
 									<p class="account-name">ธนาคารไทยพาณิช</p>
-									<p class="account-number">เลขที่บัญชี 4280250403</p>
+									<p class="account-number">
+										เลขที่บัญชี 4280250403
+										<button class="copy-btn" onclick="copyAccountNumber(event)" aria-label="คัดลอกเลขที่บัญชี" title="คัดลอกเลขที่บัญชี">
+											คัดลอก
+											
+										</button>
+									</p>
 									<p class="account-holder">นายนิติธร เดิมหลิ่ม</p>
 								</div>
 								
@@ -123,6 +129,11 @@
 							</div>
 						</div>
 					</section>
+
+					<div style=" margin-bottom: 1rem; margin-top: 0.5rem;">
+							<img src="images/a1.png" class="divider2"  />
+						</div>
+				
 
 					<!-- Gallery -->
 					<section class="wrapper style1 align-center onscroll-fade-in">
@@ -197,6 +208,69 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<!-- Copy Account Number Function -->
+			<script>
+				function copyAccountNumber(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					var accountNumber = '4280250403';
+					var btn = event.target.closest('.copy-btn') || event.currentTarget;
+					var icon = btn.querySelector('i');
+					
+					// Store original class in data attribute if not already stored
+					if (!btn.dataset.originalIconClass && icon) {
+						btn.dataset.originalIconClass = icon.className;
+					}
+					var originalClass = btn.dataset.originalIconClass || 'far fa-copy';
+					
+					// Change background color when clicked
+					btn.style.backgroundColor = '#fff4da';
+					
+					// Reset background after 5 seconds
+					var bgTimeout = setTimeout(function() {
+						btn.style.backgroundColor = '';
+					}, 5000);
+					
+					function restoreIcon() {
+						if (icon) {
+							icon.className = originalClass;
+						}
+					}
+					
+					if (navigator.clipboard && navigator.clipboard.writeText) {
+						navigator.clipboard.writeText(accountNumber).then(function() {
+							// Show feedback - change icon to checkmark
+							if (icon) {
+								icon.className = 'far fa-check';
+								setTimeout(restoreIcon, 1500);
+							}
+						}).catch(function(err) {
+							console.error('Failed to copy:', err);
+							restoreIcon();
+						});
+					} else {
+						// Fallback for older browsers
+						var textarea = document.createElement('textarea');
+						textarea.value = accountNumber;
+						textarea.style.position = 'fixed';
+						textarea.style.opacity = '0';
+						document.body.appendChild(textarea);
+						textarea.select();
+						try {
+							document.execCommand('copy');
+							if (icon) {
+								icon.className = 'far fa-check';
+								setTimeout(restoreIcon, 1500);
+							}
+						} catch (err) {
+							console.error('Failed to copy:', err);
+							restoreIcon();
+						}
+						document.body.removeChild(textarea);
+					}
+				}
+			</script>
 
 			<!-- Floating Action Button: RSVP -->
 		<a href="register.html" class="fab-rsvp" aria-label="ยืนยันการเข้าร่วมงาน">

@@ -9290,7 +9290,61 @@ body.force-mobile .gallery.style2 article .image img {
 	font-weight: 600;
 	font-family: monospace;
 	letter-spacing: 0.05em;
+	display: -moz-inline-flex;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flex;
+	display: inline-flex;
+	-moz-align-items: center;
+	-webkit-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	gap: 0.5rem;
 }
+
+#gift-section .copy-btn {
+	background: transparent !important;
+	border: none;
+	padding: 0.2rem 0.6rem;
+	height: 30px;
+	cursor: pointer;
+	color: #c9ab5f;
+	font-size: 0.85rem;
+	border-radius: 0.25rem;
+	display: -moz-inline-flex;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flex;
+	display: inline-flex;
+	-moz-align-items: center;
+	-webkit-align-items: center;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+	-moz-transition: background-color 300ms ease;
+	-webkit-transition: background-color 300ms ease;
+	-ms-transition: background-color 300ms ease;
+	transition: background-color 300ms ease;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#gift-section .copy-btn:hover,
+#gift-section .copy-btn:focus,
+#gift-section .copy-btn:active {
+	background: transparent !important;
+	outline: none;
+	color: #c9ab5f !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#gift-section .copy-btn:active {
+	color: #c9ab5f !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+
+
 
 #gift-section .account-holder {
 	font-size: 0.85rem;
