@@ -9426,6 +9426,7 @@ body.force-mobile .gallery.style2 article .image img {
 #rsvp-form-section input[type="text"]:active {
 	border: 1px solid #ddd !important;
 	border-width: 1px !important;
+	height: auto;
 	border-style: solid !important;
 	border-color: #ddd !important;
 	background-color: #fff !important;
