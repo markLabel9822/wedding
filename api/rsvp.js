@@ -22,12 +22,22 @@ module.exports = async function handler(req, res) {
 		});
 	}
 
+	// Trim whitespace from environment variables
+	const supabaseUrl = process.env.SUPABASE_URL.trim();
+	const supabaseKey = process.env.SUPABASE_ANON_KEY.trim();
+
+	// Validate URL format
+	if (!supabaseUrl.startsWith('http://') && !supabaseUrl.startsWith('https://')) {
+		console.error('Invalid SUPABASE_URL format:', supabaseUrl);
+		return res.status(500).json({ 
+			error: 'Server configuration error',
+			message: 'SUPABASE_URL must be a valid HTTP or HTTPS URL'
+		});
+	}
+
 	try {
 		// Initialize Supabase client
-		const supabase = createClient(
-			process.env.SUPABASE_URL,
-			process.env.SUPABASE_ANON_KEY
-		);
+		const supabase = createClient(supabaseUrl, supabaseKey);
 
 		// Get form data from request body
 		const { name, attending, guests } = req.body;

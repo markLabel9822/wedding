@@ -31,6 +31,11 @@ CREATE INDEX idx_rsvp_attending ON rsvp(attending);
 3. ไปที่ **Settings** > **Environment Variables**
 4. เพิ่ม environment variables ต่อไปนี้:
 
+**⚠️ สำคัญ:** ตรวจสอบให้แน่ใจว่า:
+- ไม่มี space หรือ newline ตอนท้าย URL/Key
+- URL ต้องเริ่มด้วย `https://` (ไม่ใช่ `http://`)
+- คัดลอก value โดยไม่ให้มี space หรือ newline
+
 ```
 SUPABASE_URL=https://your-project-id.supabase.co
 SUPABASE_ANON_KEY=your-anon-key-here
@@ -38,8 +43,16 @@ SUPABASE_ANON_KEY=your-anon-key-here
 
 **วิธีหา Supabase Credentials:**
 - ไปที่ Supabase Dashboard > Settings > API
-- **SUPABASE_URL**: คัดลอก `Project URL`
-- **SUPABASE_ANON_KEY**: คัดลอก `anon` `public` key
+- **SUPABASE_URL**: คัดลอก `Project URL` (ตัวอย่าง: `https://wvypmxbcxgmgmykacycp.supabase.co`)
+  - ⚠️ ต้องคัดลอกให้ครบถ้วน รวม `https://` ด้วย
+  - ⚠️ ตรวจสอบว่าไม่มี space ตอนท้าย
+- **SUPABASE_ANON_KEY**: คัดลอก `anon` `public` key (key ที่ยาวๆ เริ่มต้นด้วย `eyJ...`)
+  - ⚠️ คัดลอกทั้งหมด ตรวจสอบว่าไม่มี space ตอนท้าย
+
+**ตรวจสอบความถูกต้อง:**
+- URL ควรเป็น: `https://xxxxxxxxxxxxx.supabase.co`
+- Key ควรเป็น: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (ยาวมาก)
+- ไม่ควรมี space หรือ newline ตอนท้ายทั้งสองค่า
 
 ### 3. Install Dependencies
 
