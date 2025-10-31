@@ -10,6 +10,16 @@
 		$body = $('body'),
 		$wrapper = $('#wrapper');
 
+	// Stable viewport height variable for mobile browsers (address bar show/hide)
+	(function setViewportUnitVar() {
+		function setVh() {
+			var vh = window.innerHeight * 0.01;
+			document.documentElement.style.setProperty('--vh', vh + 'px');
+		}
+		setVh();
+		window.addEventListener('resize', setVh);
+	})();
+
 	// Breakpoints.
 		breakpoints({
 			xlarge:   [ '1281px',  '1680px' ],

@@ -8609,3 +8609,135 @@ input, select, textarea {
 			#wrapper.divided > .invert:first-child {
 				box-shadow: none !important;
 			}
+
+/* Viewport height stability on mobile in-app browsers (e.g., LINE) */
+/* Use CSS variable fallback and modern viewport units to prevent image resizing on scroll */
+.banner.style1.fullscreen {
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+@media screen and (orientation: portrait) {
+  .banner.style1.fullscreen .content {
+    min-height: calc(var(--vh, 1vh) * 50);
+  }
+
+  .banner.style1.fullscreen .image {
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
+@supports (height: 100svh) {
+  .banner.style1.fullscreen {
+    min-height: 100svh;
+  }
+
+  @media screen and (orientation: portrait) {
+    .banner.style1.fullscreen .content {
+      min-height: 50svh;
+    }
+    .banner.style1.fullscreen .image {
+      height: 100svh;
+    }
+  }
+}
+
+/* Mobile-only layout refinements */
+@media screen and (max-width: 736px) {
+
+	#wrapper {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	.banner.style1 .content {
+		text-align: center;
+		padding: 1.5rem 0.5rem;
+	}
+
+	.banner.style1 .actions {
+		justify-content: center;
+	}
+
+	.banner .image,
+	.spotlight .image {
+		width: 100%;
+		height: auto;
+	}
+
+	.spotlight .content {
+		text-align: center;
+		padding: 1.5rem 0.5rem;
+	}
+
+	.items.style1 > * {
+		width: 100% !important;
+	}
+
+	.gallery .inner {
+		gap: 0.75rem;
+	}
+}
+
+/* Force mobile layout even on desktop when body has .force-mobile */
+body.force-mobile {
+	/* visually constrain page to a mobile-like width */
+	background-color: inherit;
+}
+
+body.force-mobile #wrapper {
+	max-width: 420px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+body.force-mobile .banner.style1 {
+	-moz-flex-direction: column-reverse;
+	-webkit-flex-direction: column-reverse;
+	-ms-flex-direction: column-reverse;
+	flex-direction: column-reverse;
+}
+
+body.force-mobile .banner.style1 .content,
+body.force-mobile .spotlight .content {
+	text-align: center;
+	padding: 1.5rem 0.5rem;
+}
+
+body.force-mobile .banner .image,
+body.force-mobile .spotlight .image {
+	width: 100%;
+	height: auto;
+}
+
+/* Ensure banner image is visible in forced-mobile mode on desktop */
+body.force-mobile .banner.style1 .image {
+	position: relative;
+}
+
+body.force-mobile .banner.style1.fullscreen .image {
+	height: calc(var(--vh, 1vh) * 100);
+	overflow: hidden;
+}
+
+@supports (height: 100svh) {
+	body.force-mobile .banner.style1.fullscreen .image {
+		height: 100svh;
+	}
+}
+
+body.force-mobile .banner.style1.fullscreen .image img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center;
+}
+
+body.force-mobile .items.style1 > * {
+	width: 100% !important;
+}
+
+body.force-mobile .gallery .inner {
+	gap: 0.75rem;
+}
