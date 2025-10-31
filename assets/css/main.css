@@ -8758,3 +8758,28 @@ body.line-ios .banner.style1 .image img {
 	object-fit: initial;
 	object-position: initial;
 }
+
+/* Remove all borders/divider lines across the page */
+#wrapper, #wrapper * {
+	border: 0 !important;
+}
+
+#wrapper.divided > *,
+#wrapper.divided > .invert,
+#wrapper > .invert,
+#wrapper > * {
+	box-shadow: none !important;
+}
+
+#wrapper .index > *,
+#wrapper > .invert .index > *,
+.items > *,
+.items.style2 > * {
+	border: 0 !important;
+}
+
+/* Section Two (id="first"): use object-fit: contain for image */
+#first.spotlight.style1 .image img {
+	object-fit: contain !important;
+	object-position: center !important;
+}
