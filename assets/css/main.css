@@ -3576,21 +3576,27 @@ input, select, textarea {
 		}
 
 		.banner.style1.fullscreen {
-			min-height: 100vh;
-		}
+  min-height: 100vh;
+}
 
-			@media screen and (orientation: portrait) {
+@media screen and (orientation: portrait) {
+  .banner.style1.fullscreen .content {
+    min-height: 50vh;
+  }
 
-				.banner.style1.fullscreen .content {
-					min-height: 100vh;
-				}
+  .banner.style1.fullscreen .image {
+    height: 100vh;
+    overflow: hidden; /* กันภาพล้น */
+  }
 
-				.banner.style1.fullscreen .image {
-					height: 100vh;
-				}
-
-			}
-
+  .banner.style1.fullscreen .image img {
+    width: 100%;
+    height: 100%;
+   object-fit: contain;
+    object-position: center; /* จัดกลางภาพ */
+    display: block;
+  }
+}
 		.banner.style1.orient-right {
 			-moz-flex-direction: row-reverse;
 			-webkit-flex-direction: row-reverse;
@@ -3636,7 +3642,9 @@ input, select, textarea {
 			-moz-object-position: right;
 			-webkit-object-position: right;
 			-ms-object-position: right;
-			object-position: right;
+		
+			object-position: center;
+			background-color: white;
 		}
 
 /* Banner (style2) */
