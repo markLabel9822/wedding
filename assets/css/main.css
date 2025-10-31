@@ -9269,8 +9269,36 @@ body.force-mobile .gallery.style2 article .image img {
 	padding: 1rem;
 }
 
+#gift-section .account-info {
+	text-align: center;
+	
+}
+
+#gift-section .account-info p {
+	margin: 0.4rem 0;
+	font-size: 0.9rem;
+	color: #333;
+	line-height: 1.5;
+}
+
+#gift-section .account-name {
+	font-weight: 600;
+	color: #c9ab5f;
+}
+
+#gift-section .account-number {
+	font-weight: 600;
+	font-family: monospace;
+	letter-spacing: 0.05em;
+}
+
+#gift-section .account-holder {
+	font-size: 0.85rem;
+	color: #666;
+}
+
 #gift-section .gift-message {
-	font-size: 0.95rem;
+	font-size: 1rem;
 	line-height: 1.6;
 	color: #555;
 	text-align: center;
