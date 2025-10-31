@@ -9460,7 +9460,11 @@ body.force-mobile .gallery.style2 article .image img {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-
+	-moz-flex-direction: column;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	gap: 0.5rem;
 	margin-top: 0.5rem;
 }
 
