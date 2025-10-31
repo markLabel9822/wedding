@@ -2152,9 +2152,9 @@ input, select, textarea {
 		button.small,
 		.button.small {
 			font-size: 0.6rem;
-			height: 3.325em;
-			line-height: 3.325em;
-			border-radius: 3.325em;
+		height: 4em;
+			line-height: 4em;
+			border-radius: 4em;
 			padding: 0 2em;
 		}
 
