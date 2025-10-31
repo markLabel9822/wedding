@@ -8986,8 +8986,9 @@ body.force-mobile .banner.style1.fullscreen {
 
 #countdown-section .countdown__label {
 	display: block;
-	font-size: 0.7rem;
+	font-size:'12px';
 	letter-spacing: 0.15em;
-	opacity: 0.6;
+	    font-weight: bold;
+	
 	margin-top: 0.25rem;
 }
