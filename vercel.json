@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/rsvp.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "headers": [
     {
       "source": "/api/(.*)",
