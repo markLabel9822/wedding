@@ -2201,14 +2201,7 @@ input, select, textarea {
 		color: #000000 !important;
 	}
 
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		input[type="button"]:hover,
-		button:hover,
-		.button:hover {
-			box-shadow: inset 0 0 0 1px #c9ab5f;
-			color: #c9ab5f !important;
-		}
+		
 
 		input[type="submit"]:active,
 		input[type="reset"]:active,
@@ -9205,6 +9198,26 @@ body.force-mobile #countdown-section .inner {
 	max-width: 430px;
 	height: auto;
 	aspect-ratio: 430 / 250;
+	display: block;
+	margin: 0 auto;
+	object-fit: contain;
+}
+
+#map-section .map-image {
+	width: 100%;
+	max-width: 430px;
+	height: auto;
+	aspect-ratio: 430 / 300;
+	display: block;
+	margin: 0 auto;
+	object-fit: contain;
+}
+
+.divider2 {
+	width: 100%;
+	max-width: 430px;
+	height: auto;
+	aspect-ratio: 430 / 60;
 	display: block;
 	margin: 0 auto;
 	object-fit: contain;
