@@ -8711,6 +8711,15 @@ body.force-mobile .spotlight .image {
 	height: auto;
 }
 
+/* Ensure spotlight images render correctly when forcing mobile on desktop */
+body.force-mobile .spotlight .image img {
+	position: relative;
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+	object-position: center;
+}
+
 /* Ensure banner image is visible in forced-mobile mode on desktop */
 body.force-mobile .banner.style1 .image {
 	position: relative;
@@ -8782,4 +8791,130 @@ body.line-ios .banner.style1 .image img {
 #first.spotlight.style1 .image img {
 	object-fit: contain !important;
 	object-position: center !important;
+}
+
+/* Ensure Section Two container doesn't force crop on desktop */
+#first.spotlight.style1 .image {
+	position: relative !important;
+	width: 100% !important;
+	min-width: 0 !important;
+	height: auto !important;
+}
+
+#first.spotlight.style1 .image img {
+	position: static !important;
+	width: 100% !important;
+	height: auto !important;
+}
+
+/* Consistent vertical spacing between Section 1 and Section 2 across sizes */
+:root {
+	--section-gap: 2.5rem;
+}
+
+@media screen and (min-width: 481px) {
+	:root { --section-gap: 3rem; }
+}
+
+@media screen and (min-width: 981px) {
+	:root { --section-gap: 3.5rem; }
+}
+
+.banner.style1 {
+	margin-bottom: var(--section-gap) !important;
+}
+
+.banner.style1 .content {
+	padding-bottom: 0 !important;
+}
+
+#first.spotlight.style1 {
+	margin-top: 0 !important;
+}
+
+#first.spotlight.style1 .content {
+	padding-top: 0 !important;
+}
+
+/* MOBILE-FIRST FIXED CANVAS AND SECTION SIZING */
+/* Always render as mobile width, scale proportionally on smaller devices */
+body.force-mobile #wrapper {
+	max-width: 430px !important; /* target design width */
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Section 1 (banner) container with fixed aspect ratio 430x800 */
+body.force-mobile .banner.style1.fullscreen .image {
+	position: relative !important;
+	width: 100% !important;
+	height: auto;
+	aspect-ratio: 430 / 800; /* maintains proportion without using vh */
+	overflow: hidden;
+}
+
+/* Section 1 image fills container without distortion */
+body.force-mobile .banner.style1.fullscreen .image img {
+	position: static !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover; /* best visual balance for hero image */
+	object-position: center;
+}
+
+/* Section 2 (#first spotlight) container with fixed aspect ratio 430x500 */
+body.force-mobile #first.spotlight.style1 .image {
+	position: relative !important;
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 430 / 500;
+	overflow: hidden;
+}
+
+/* Section 2 image fill behavior */
+body.force-mobile #first.spotlight.style1 .image img {
+	position: static !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover; /* switch to cover to avoid letterboxing */
+	object-position: center;
+}
+
+/* Keep fade-in behavior for Section 2 but avoid gray placeholder */
+body.force-mobile #first.spotlight.style1 .image {
+	background-color: transparent !important;
+}
+
+/* Optional: ensure smooth fade timing for Section 2 */
+body.force-mobile #first.spotlight.style1.onscroll-image-fade-in .image img {
+	-moz-transition: opacity 0.6s ease-in-out;
+	-webkit-transition: opacity 0.6s ease-in-out;
+	-ms-transition: opacity 0.6s ease-in-out;
+	transition: opacity 0.6s ease-in-out;
+}
+
+/* Disable scroll-triggered fade-in for images when forcing mobile */
+
+/* Normalize vertical spacing around sections for consistency */
+body.force-mobile .banner.style1 { margin-bottom: 2rem !important; }
+body.force-mobile #first.spotlight.style1 { margin-top: 0 !important; }
+
+/* Remove inner padding/empty content space in Section 1 */
+body.force-mobile .banner.style1 {
+	padding: 0 !important;
+}
+
+body.force-mobile .banner.style1 .content {
+	display: none !important; /* collapse empty area below image */
+	padding: 0 !important;
+	margin: 0 !important;
+	height: 0 !important;
+	min-height: 0 !important;
+}
+
+/* Kill vh-driven heights on Section 1 when forcing mobile */
+body.force-mobile .banner.style1.fullscreen {
+	min-height: auto !important;
+	height: auto !important;
 }
