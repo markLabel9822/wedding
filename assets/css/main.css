@@ -9276,7 +9276,7 @@ body.force-mobile .gallery.style2 article .image img {
 
 #gift-section .account-info p {
 	margin: 0.4rem 0;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	color: #333;
 	line-height: 1.5;
 }
@@ -9307,7 +9307,7 @@ body.force-mobile .gallery.style2 article .image img {
 	padding: 0.2rem 0.6rem;
 	height: 30px;
 	cursor: pointer;
-	color: #c9ab5f;
+	
 	font-size: 0.85rem;
 	border-radius: 0.25rem;
 	display: -moz-inline-flex;
@@ -9332,7 +9332,7 @@ body.force-mobile .gallery.style2 article .image img {
 #gift-section .copy-btn:active {
 	background: transparent !important;
 	outline: none;
-	color: #c9ab5f !important;
+
 	opacity: 1 !important;
 	visibility: visible !important;
 	-webkit-tap-highlight-color: transparent;
