@@ -75,6 +75,14 @@
 		if (!btn) return;
 
 		btn.addEventListener('click', function(e) {
+			// Prefer static ICS on LINE to avoid blocked Blob downloads
+			var isLine = /Line\//i.test(navigator.userAgent || '');
+			if (isLine) {
+				// allow default navigation to the static ICS
+				btn.setAttribute('href', 'mark-sai-wedding.ics');
+				return;
+			}
+
 			e.preventDefault();
 
 			// Event: all-day on 27 Dec 2025
