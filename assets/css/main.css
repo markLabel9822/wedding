@@ -1,3 +1,13 @@
+#countdown-section + .wrapper .floral-divider {
+	width: 220px;
+	max-width: 90vw;
+	opacity: 0.9;
+	filter: drop-shadow(0 3px 6px rgba(0,0,0,0.08));
+}
+
+@media screen and (max-width: 480px) {
+	#countdown-section + .wrapper .floral-divider { width: 480px; }
+}
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
 
@@ -8973,6 +8983,40 @@ body.force-mobile .banner.style1.fullscreen {
 	margin-top: 1rem;
 	padding-top : 0px;
 	margin-bottom: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	flex-wrap: nowrap;
+	max-width: 100%;
+}
+
+/* Ensure countdown displays fully on desktop when forcing mobile */
+body.force-mobile #countdown-section .countdown {
+	gap: 1rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
+
+body.force-mobile #countdown-section .countdown__item {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+body.force-mobile #countdown-section .countdown__num {
+	font-size: 1.75rem;
+	padding: 0.2rem 0.5rem;
+	white-space: nowrap;
+}
+
+body.force-mobile #countdown-section {
+	padding-left: 0.5rem !important;
+	padding-right: 0.5rem !important;
+	overflow-x: visible;
+}
+
+body.force-mobile #countdown-section .inner {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	max-width: 100%;
 }
 
 #countdown-section .countdown__item {
@@ -8981,14 +9025,176 @@ body.force-mobile .banner.style1.fullscreen {
 
 #countdown-section .countdown__num {
 	font-size: 2.25rem;
-	font-weight: 700;
+	font-weight: 400;
+	font-variant-numeric: tabular-nums;
+	background: #ffffff;
+	border-radius: 0.75rem;
+	padding: 0.25rem 0.65rem;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+	transform-origin: center;
+	transition: transform 150ms ease-out;
 }
 
 #countdown-section .countdown__label {
 	display: block;
-	font-size:'12px';
+	font-size: 12px;
 	letter-spacing: 0.15em;
 	    font-weight: bold;
 	
 	margin-top: 0.25rem;
+}
+
+/* Flip animation when digits change */
+.countdown__num.flip {
+	animation: cd-flip 420ms ease;
+}
+
+@keyframes cd-flip {
+	0% { transform: rotateX(0) scale(1); }
+	45% { transform: rotateX(-90deg) scale(0.98); }
+	55% { transform: rotateX(90deg) scale(0.98); }
+	100% { transform: rotateX(0) scale(1); }
+}
+
+/* Animated gradient shimmer on date title */
+#countdown-section .date-title {
+	background-image: linear-gradient(90deg, #c9a037, #e5d295, #c9ab5f);
+	background-size: 200% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent !important;
+	animation: date-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes date-shimmer {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/* Dress Code */
+#dresscode .dresscode-swatches {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    gap: 0.75rem;
+    -moz-flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap; /* single row */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+    overflow: hidden; /* prevent bleed on tiny screens */
+}
+
+#dresscode .dresscode-swatches li {
+	background: transparent;
+	border-radius: 0.75rem;
+	padding: 0.25rem 0.25rem;
+	box-shadow: none;
+	display: flex;
+	justify-content: center;
+}
+
+#dresscode .swatch {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    border-radius: 9999px;
+    background: var(--sw);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06), inset 0 0 0 2px rgba(0,0,0,0.04);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    animation: dc-pop 520ms ease both;
+}
+
+#dresscode .dresscode-swatches li:nth-child(1) .swatch { animation-delay: 0ms; }
+#dresscode .dresscode-swatches li:nth-child(2) .swatch { animation-delay: 90ms; }
+#dresscode .dresscode-swatches li:nth-child(3) .swatch { animation-delay: 180ms; }
+#dresscode .dresscode-swatches li:nth-child(4) .swatch { animation-delay: 270ms; }
+
+#dresscode .swatch:hover,
+#dresscode .swatch:focus {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12), inset 0 0 0 2px rgba(0,0,0,0.06);
+}
+
+@keyframes dc-pop {
+    0% { opacity: 0; transform: translateY(12px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media screen and (max-width: 480px) {
+    #dresscode .swatch { width: 56px; height: 56px; }
+    #dresscode .dresscode-swatches { gap: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; }
+}
+
+/* Dress code image badge under title */
+#dresscode .dresscode-badge {
+	width: 100%;
+	max-width: 430px;
+	height: auto;
+	display: inline-block;
+	margin: 0.25rem auto 0.75rem auto;
+}
+
+/* Generic onscroll fade-in for wrapper children */
+#wrapper > .onscroll-fade-in {
+	-moz-transition: opacity 0.75s ease, -moz-transform 0.75s ease;
+	-webkit-transition: opacity 0.75s ease, -webkit-transform 0.75s ease;
+	-ms-transition: opacity 0.75s ease, -ms-transform 0.75s ease;
+	transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+#wrapper > .onscroll-fade-in.is-inactive {
+	opacity: 0;
+	-moz-transform: translateY(0.75rem);
+	-webkit-transform: translateY(0.75rem);
+	-ms-transform: translateY(0.75rem);
+	transform: translateY(0.75rem);
+}
+
+#wrapper > #dresscode.onscroll-fade-in { transition: none; }
+
+#wrapper > #dresscode.onscroll-fade-in .swatch {
+	opacity: 1;
+	transform: translate(0,0) scale(1);
+	filter: blur(0);
+	transition: transform 650ms cubic-bezier(.2,.8,.2,1), opacity 650ms ease, filter 650ms ease;
+}
+
+#wrapper > #dresscode.onscroll-fade-in.is-inactive .swatch {
+	opacity: 0;
+	transform: translateY(16px) translateX(-6px) scale(0.98);
+	filter: blur(4px);
+}
+
+#wrapper > #dresscode.onscroll-fade-in .dresscode-badge {
+	opacity: 1;
+	transform: translateY(0);
+	transition: transform 650ms ease, opacity 650ms ease;
+}
+
+#wrapper > #dresscode.onscroll-fade-in.is-inactive .dresscode-badge {
+	opacity: 0;
+	transform: translateY(12px);
+}
+
+#wrapper > #dresscode.onscroll-fade-in .dresscode-swatches li:nth-child(1) .swatch { transition-delay: 60ms; }
+#wrapper > #dresscode.onscroll-fade-in .dresscode-swatches li:nth-child(2) .swatch { transition-delay: 140ms; }
+#wrapper > #dresscode.onscroll-fade-in .dresscode-swatches li:nth-child(3) .swatch { transition-delay: 220ms; }
+#wrapper > #dresscode.onscroll-fade-in .dresscode-swatches li:nth-child(4) .swatch { transition-delay: 300ms; }
+
+#dresscode .dresscode-note {
+	margin-top: 1rem;
+	opacity: 0.75;
+	font-size: 0.9rem;
 }

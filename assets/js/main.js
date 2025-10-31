@@ -51,6 +51,13 @@
 
 		if (!$days.length) return;
 
+		function tick($el, nextVal) {
+			if ($el.text() !== nextVal) {
+				$el.text(nextVal).addClass('flip');
+				setTimeout(function(){ $el.removeClass('flip'); }, 420);
+			}
+		}
+
 		function update() {
 			var now = new Date();
 			var diffMs = Math.max(0, target - now);
@@ -59,10 +66,10 @@
 			var hours = Math.floor((totalSec % 86400) / 3600);
 			var mins = Math.floor((totalSec % 3600) / 60);
 			var secs = totalSec % 60;
-			$days.text(days);
-			$hours.text(hours.toString().padStart(2, '0'));
-			$mins.text(mins.toString().padStart(2, '0'));
-			$secs.text(secs.toString().padStart(2, '0'));
+			tick($days, String(days));
+			tick($hours, hours.toString().padStart(2, '0'));
+			tick($mins, mins.toString().padStart(2, '0'));
+			tick($secs, secs.toString().padStart(2, '0'));
 		}
 
 		update();
