@@ -1,0 +1,16 @@
+{
+  "name": "wedding-rsvp",
+  "version": "1.0.0",
+  "description": "Wedding RSVP Form with Supabase",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "vercel": "^34.0.0"
+  }
+}

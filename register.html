@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Mark & Sai — 27 December 2025</title>
+		<title>ลงทะเบียนเข้าร่วมงาน — Mark & Sai Wedding</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
@@ -19,21 +19,68 @@
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
 
-				<!-- One -->
-					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
-						
-					<p style="margin-top: 2rem;">Comming Soon...</p>
-								</section>
-
-				<!-- Footer -->
-					<footer class="wrapper style1 align-center">
+				<!-- RSVP Form -->
+					<section class="wrapper style1 align-center onscroll-fade-in" id="rsvp-form-section">
 						<div class="inner">
-						
-							<p>&copy; MARKSAI. WEDDING</p>
+							<h2>ลงทะเบียนเข้าร่วมงาน</h2>
+							<p class="intro-text">
+								เรายินดีอย่างยิ่งหากคุณจะมาร่วมแบ่งปันความสุขในวันพิเศษนี้
+							</p>
+							
+							<form id="rsvp-form" method="POST" action="#" novalidate>
+								<div class="field">
+									<label for="name">ชื่อ <span style="color: #c9ab5f;">*</span></label>
+									<input type="text" name="name" id="name" placeholder="กรุณากรอกชื่อของคุณ" required />
+									<span class="error-message" id="name-error"></span>
+								</div>
+
+								<div class="field">
+									<label style="margin-bottom: 0.75rem; display: block;">สามารถเข้าร่วมงานได้ <span style="color: #c9ab5f;">*</span></label>
+									<div class="radio-group">
+										<input type="radio" id="attending-yes" name="attending" value="yes" required />
+										<label for="attending-yes">ได้</label>
+										<input type="radio" id="attending-no" name="attending" value="no" required />
+										<label for="attending-no">ไม่สามารถ</label>
+									</div>
+									<span class="error-message" id="attending-error"></span>
+								</div>
+
+								<div class="field" id="guests-field" style="display: none;">
+									<label for="guests">ผู้ติดตาม (คน)</label>
+									<select name="guests" id="guests">
+										<option value="0">ไม่มีผู้ติดตาม</option>
+										<option value="1">1 คน</option>
+										<option value="2">2 คน</option>
+										<option value="3">3 คน</option>
+										<option value="4">4 คน</option>
+										<option value="5">5 คน</option>
+										<option value="6">6 คน</option>
+										<option value="7">7 คน</option>
+									</select>
+								</div>
+
+								<ul class="actions special" style="margin-top: 2rem;">
+									<li><button type="submit" class="button"><p style="font-weight: 700;">ส่งคำยืนยัน</p></button></li>
+								</ul>
+							</form>
 						</div>
-					</footer>
+					</section>
 
 			</div>
+
+		<!-- Success Modal -->
+		<div id="success-modal" class="rsvp-modal" style="display: none;">
+			<div class="rsvp-modal-content">
+				<span class="rsvp-modal-close">&times;</span>
+				<div class="rsvp-modal-body">
+					<i class="far fa-check-circle" style="font-size: 4rem; color: #c9ab5f; margin-bottom: 1rem;"></i>
+					<h3>ขอบคุณที่มาร่วมเป็นส่วนหนึ่ง</h3>
+					<h3>ในความทรงจำของเรา</h3>
+					
+					<button class="button" onclick="closeSuccessModal()" style="margin-top: 1.5rem;">ปิด</button>
+				</div>
+			</div>
+		</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -44,7 +91,161 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-		
+			<!-- RSVP Form Script -->
+			<script>
+				// Show/hide guests field based on attendance
+				document.addEventListener('DOMContentLoaded', function() {
+					var attendingRadios = document.querySelectorAll('input[name="attending"]');
+					var guestsField = document.getElementById('guests-field');
+					
+					attendingRadios.forEach(function(radio) {
+						radio.addEventListener('change', function() {
+							if (this.value === 'yes') {
+								guestsField.style.display = 'block';
+							} else {
+								guestsField.style.display = 'none';
+								document.getElementById('guests').value = '0';
+							}
+						});
+					});
+
+					// Form validation and submission
+					var form = document.getElementById('rsvp-form');
+					form.addEventListener('submit', function(e) {
+						e.preventDefault();
+						
+						// Clear previous errors
+						clearErrors();
+						
+						// Validate
+						var name = document.getElementById('name').value.trim();
+						var attending = document.querySelector('input[name="attending"]:checked');
+						var isValid = true;
+
+						// Validate name
+						if (!name || name.length < 2) {
+							showError('name-error', 'กรุณากรอกชื่อของคุณ');
+							isValid = false;
+						}
+
+						// Validate attending
+						if (!attending) {
+							showError('attending-error', 'กรุณาเลือกว่าสามารถเข้าร่วมงานได้หรือไม่');
+							isValid = false;
+						}
+
+						if (!isValid) {
+							return;
+						}
+
+						// Prepare data
+						var formData = {
+							name: name,
+							attending: attending.value,
+							guests: attending.value === 'yes' ? document.getElementById('guests').value : '0'
+						};
+
+						// Submit to API (replace with your actual API endpoint)
+						submitRSVP(formData);
+					});
+				});
+
+				function showError(id, message) {
+					var errorEl = document.getElementById(id);
+					if (errorEl) {
+						errorEl.textContent = message;
+						errorEl.style.display = 'block';
+					}
+				}
+
+				function clearErrors() {
+					var errors = document.querySelectorAll('.error-message');
+					errors.forEach(function(error) {
+						error.textContent = '';
+						error.style.display = 'none';
+					});
+				}
+
+				function submitRSVP(data) {
+					// API endpoint
+					var apiUrl = '/api/rsvp';
+					
+					// Show loading state
+					var submitButton = document.querySelector('button[type="submit"]');
+					var originalButtonText = submitButton.innerHTML;
+					submitButton.disabled = true;
+					submitButton.innerHTML = '<p style="font-weight: 700;">กำลังส่ง...</p>';
+					
+					// Submit to API
+					fetch(apiUrl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data)
+					})
+					.then(response => {
+						if (!response.ok) {
+							return response.json().then(err => Promise.reject(err));
+						}
+						return response.json();
+					})
+					.then(result => {
+						if (result.success) {
+							showSuccessModal();
+							document.getElementById('rsvp-form').reset();
+							document.getElementById('guests-field').style.display = 'none';
+						} else {
+							alert('เกิดข้อผิดพลาด: ' + (result.message || 'กรุณาลองใหม่อีกครั้ง'));
+						}
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						var errorMessage = error.message || 'กรุณาลองใหม่อีกครั้ง';
+						if (error.error === 'Validation error') {
+							errorMessage = error.message || 'กรุณาตรวจสอบข้อมูลที่กรอก';
+						} else if (error.error === 'Database error') {
+							errorMessage = 'เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง';
+						}
+						alert('เกิดข้อผิดพลาด: ' + errorMessage);
+					})
+					.finally(function() {
+						// Restore button state
+						submitButton.disabled = false;
+						submitButton.innerHTML = originalButtonText;
+					});
+				}
+
+				function showSuccessModal() {
+					var modal = document.getElementById('success-modal');
+					modal.style.display = 'flex';
+				}
+
+				function closeSuccessModal() {
+					var modal = document.getElementById('success-modal');
+					modal.style.display = 'none';
+					// Redirect back to home page
+					setTimeout(function() {
+						window.location.href = 'index.html';
+					}, 300);
+				}
+
+				// Close modal when clicking outside
+				window.onclick = function(event) {
+					var modal = document.getElementById('success-modal');
+					if (event.target == modal) {
+						closeSuccessModal();
+					}
+				}
+
+				// Close button
+				document.addEventListener('DOMContentLoaded', function() {
+					var closeBtn = document.querySelector('.rsvp-modal-close');
+					if (closeBtn) {
+						closeBtn.onclick = closeSuccessModal;
+					}
+				});
+			</script>
 
 	</body>
 </html>
