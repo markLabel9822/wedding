@@ -9222,3 +9222,20 @@ body.force-mobile #countdown-section .inner {
 	margin: 0 auto;
 	object-fit: contain;
 }
+
+/* Gallery customization for portrait images */
+body.force-mobile .gallery.style2.medium {
+	max-width: 430px;
+	margin: 0 auto;
+}
+
+body.force-mobile .gallery.style2 article {
+	width: auto;
+	max-width: 200px;
+}
+
+body.force-mobile .gallery.style2 article .image img {
+	object-fit: cover;
+	height: auto;
+	max-height: 400px;
+}
