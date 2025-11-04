@@ -39,19 +39,17 @@ module.exports = async function handler(req, res) {
 		// Initialize Supabase client
 		const supabase = createClient(supabaseUrl, supabaseKey);
 
-		// Get query parameters for pagination
-		const limit = parseInt(req.query.limit) || 100; // Default to 100 items
-		const offset = parseInt(req.query.offset) || 0;
-		const orderBy = req.query.orderBy || 'submitted_at'; // Default order by submission time
-		const order = req.query.order || 'desc'; // Default to descending (newest first)
+	const limit = parseInt(req.query.limit) || 100;
+	const offset = parseInt(req.query.offset) || 0;
+	const orderBy = req.query.orderBy || 'submitted_at';
+	const order = 'desc'; 
 
-		// Fetch blessings from Supabase
-		// Select only the fields we need: name, message, text_color, background_color
-		const { data, error, count } = await supabase
-			.from('blessings')
-			.select('id, name, message, text_color, background_color, submitted_at', { count: 'exact' })
-			.order(orderBy, { ascending: order === 'asc' })
-			.range(offset, offset + limit - 1);
+	// Fetch blessings from Supabase
+	const { data, error, count } = await supabase
+		.from('blessings')
+		.select('id, name, message, text_color, background_color, submitted_at', { count: 'exact' })
+		.order(orderBy, { ascending: false }) // ascending: false = descending
+		.range(offset, offset + limit - 1);
 
 		if (error) {
 			console.error('Supabase error:', error);
