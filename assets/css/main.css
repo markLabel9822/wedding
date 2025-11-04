@@ -9038,7 +9038,7 @@ body.force-mobile .banner.style1.fullscreen {
 }
 
 @media screen and (max-width: 480px) {
-	.fab-rsvp { right: 12px; bottom: 24px; padding: 0.5rem 0.75rem; }
+	.fab-rsvp { height: 52px; right: 12px; bottom: 48px; padding: 0.5rem 0.75rem; }
 }
 
 /* Countdown styles */
