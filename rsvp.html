@@ -246,7 +246,7 @@
 				padding: 1rem !important;
 				border-radius: 8px !important;
 				border: 2px dashed rgba(201, 171, 95, 0.3);
-				min-height: 90px !important;
+				min-height: 130px !important;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -603,7 +603,7 @@
 								ส่งคำอวยพรและความรักเล็ก ๆ กลับมาหาเรา
 							</p>
 							
-							<form id="blessing-form" method="POST" action="#" novalidate>
+							<form id="blessing-form" mกethod="POST" action="#" novalidate>
 								<div class="field">
 									<label for="blesser-name">ชื่อผู้อวยพร <span style="color: #c9ab5f;">*</span></label>
 									<input type="text" name="blesser-name" id="blesser-name" placeholder="กรุณากรอกชื่อของคุณ" required />
@@ -633,10 +633,16 @@
 										</div>
 									</div>
 								</div>
-
+<!-- 
 								<ul class="actions special" style="margin-top: 2rem;">
 									<li><button type="submit" class="button large" style="background-color: #c9ab5f; color: #ffffff !important;">ส่งคำอวยพร</button></li>
-								</ul>
+								</ul> -->
+								
+								<div style="text-align: center; margin-top: 2.5rem;">
+									
+										<button class="button small"  type="submit" style="font-size: 1rem !important; background-color: #c9ab5f; color: #ffffff !important;">ส่งคำอวยพร</span>
+									
+								</div>
 								
 							</form>
 						</div>
@@ -885,7 +891,7 @@
 					modal.style.display = 'none';
 					// Redirect back to home page
 					setTimeout(function() {
-						window.location.href = 'index.html';
+						window.location.href = 'blessings.html';
 					}, 300);
 				}
 
