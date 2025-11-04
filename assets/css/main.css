@@ -8341,7 +8341,6 @@ input, select, textarea {
 /* Wrapper */
 
 	#wrapper {
-		background-color: inherit;
 		width: 100%;
 		overflow-x: hidden;
 	}
