@@ -345,14 +345,67 @@
 				});
 
 		// Lightbox.
-			$('.gallery.lightbox')
+			$('.gallery.lightbox').each(function() {
+				var $gallery = $(this);
+				var $images = $gallery.find('a[href$=".jpg"], a[href$=".png"], a[href$=".gif"], a[href$=".mp4"]');
+				
+				// Function to get all image URLs
+				var getImageUrls = function() {
+					var urls = [];
+					$images.each(function() {
+						urls.push($(this).attr('href'));
+					});
+					return urls;
+				};
+				
+				var imageUrls = getImageUrls();
+				
+				// Function to show image at index
+				var showImage = function(index) {
+					if (index < 0 || index >= imageUrls.length) return;
+					
+					var $modal = $gallery.children('.modal');
+					var $modalImg = $modal.find('img');
+					
+					if ($modal[0]._locked) return;
+					
+					$modal[0]._locked = true;
+					$gallery[0]._currentIndex = index;
+					
+					// Remove loaded class
+					$modal.removeClass('loaded');
+					
+					// Set new src
+					$modalImg.attr('src', imageUrls[index]);
+					
+					// Update navigation buttons
+					var $prevBtn = $modal.find('.gallery-nav-prev');
+					var $nextBtn = $modal.find('.gallery-nav-next');
+					
+					if ($prevBtn.length) {
+						$prevBtn.toggle(index > 0);
+					}
+					if ($nextBtn.length) {
+						$nextBtn.toggle(index < imageUrls.length - 1);
+					}
+					
+					setTimeout(function() {
+						$modal[0]._locked = false;
+					}, 600);
+				};
+				
+				// Store functions in gallery element
+				$gallery[0].showImage = showImage;
+				$gallery[0]._totalImages = imageUrls.length;
+			})
 				.on('click', 'a', function(event) {
 
 					var $a = $(this),
 						$gallery = $a.parents('.gallery'),
 						$modal = $gallery.children('.modal'),
 						$modalImg = $modal.find('img'),
-						href = $a.attr('href');
+						href = $a.attr('href'),
+						$images = $gallery.find('a[href$=".jpg"], a[href$=".png"], a[href$=".gif"], a[href$=".mp4"]');
 
 					// Not an image? Bail.
 						if (!href.match(/\.(jpg|gif|png|mp4)$/))
@@ -366,6 +419,17 @@
 						if ($modal[0]._locked)
 							return;
 
+					// Find current index
+						var currentIndex = 0;
+						$images.each(function(index) {
+							if ($(this).attr('href') === href) {
+								currentIndex = index;
+								return false;
+							}
+						});
+						
+						$gallery[0]._currentIndex = currentIndex;
+
 					// Lock.
 						$modal[0]._locked = true;
 
@@ -377,6 +441,20 @@
 
 					// Focus.
 						$modal.focus();
+						
+					// Update navigation buttons
+						setTimeout(function() {
+							var $prevBtn = $modal.find('.gallery-nav-prev');
+							var $nextBtn = $modal.find('.gallery-nav-next');
+							var totalImages = $gallery[0]._totalImages || $images.length;
+							
+							if ($prevBtn.length) {
+								$prevBtn.toggle(currentIndex > 0);
+							}
+							if ($nextBtn.length) {
+								$nextBtn.toggle(currentIndex < totalImages - 1);
+							}
+						}, 100);
 
 					// Delay.
 						setTimeout(function() {
@@ -388,9 +466,16 @@
 
 				})
 				.on('click', '.modal', function(event) {
+					
+					// Don't close if clicking on navigation buttons or image
+					if ($(event.target).closest('.gallery-nav-prev, .gallery-nav-next, .inner').length) {
+						event.stopPropagation();
+						return;
+					}
 
 					var $modal = $(this),
-						$modalImg = $modal.find('img');
+						$modalImg = $modal.find('img'),
+						$gallery = $modal.parent('.gallery');
 
 					// Locked? Bail.
 						if ($modal[0]._locked)
@@ -429,16 +514,59 @@
 						}, 125);
 
 				})
-				.on('keypress', '.modal', function(event) {
-
+				.on('click', '.gallery-nav-prev', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					
+					var $gallery = $(this).closest('.gallery');
+					var currentIndex = $gallery[0]._currentIndex || 0;
+					
+					if ($gallery[0].showImage && currentIndex > 0) {
+						$gallery[0].showImage(currentIndex - 1);
+					}
+				})
+				.on('click', '.gallery-nav-next', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					
+					var $gallery = $(this).closest('.gallery');
+					var totalImages = $gallery[0]._totalImages || 0;
+					var currentIndex = $gallery[0]._currentIndex || 0;
+					
+					if ($gallery[0].showImage && currentIndex < totalImages - 1) {
+						$gallery[0].showImage(currentIndex + 1);
+					}
+				})
+				.on('keydown', '.modal', function(event) {
 					var $modal = $(this);
+					var $gallery = $modal.parent('.gallery');
+					var totalImages = $gallery[0]._totalImages || 0;
+					var currentIndex = $gallery[0]._currentIndex || 0;
 
 					// Escape? Hide modal.
-						if (event.keyCode == 27)
+						if (event.keyCode == 27) {
 							$modal.trigger('click');
+							return;
+						}
+						
+					// Left arrow? Previous image.
+						if (event.keyCode == 37 && currentIndex > 0) {
+							if ($gallery[0].showImage) {
+								$gallery[0].showImage(currentIndex - 1);
+							}
+							return;
+						}
+						
+					// Right arrow? Next image.
+						if (event.keyCode == 39 && currentIndex < totalImages - 1) {
+							if ($gallery[0].showImage) {
+								$gallery[0].showImage(currentIndex + 1);
+							}
+							return;
+						}
 
 				})
-				.prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>')
+				.prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div><button class="gallery-nav-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button><button class="gallery-nav-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button></div>')
 					.find('img')
 						.on('load', function(event) {
 

@@ -6,33 +6,653 @@
 -->
 <html>
 	<head>
-		<title>Mark & Sai — 27 December 2025</title>
+		<title>เขียนคำอวยพร — Mark & Sai Wedding</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				background-image: url('images/wallpaper.png') !important;
+				background-size: cover !important;
+				background-position: center !important;
+				background-repeat: no-repeat !important;
+				background-attachment: fixed !important;
+				background-color: transparent !important;
+			}
+			
+			.navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				width: 100%;
+				background-color: #ffffff;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+				z-index: 1000;
+				padding: 0;
+			}
+			
+			.navbar-container {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 1rem 1.5rem;
+				max-width: 100%;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			.back-button {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.5rem 1rem;
+				background-color: transparent;
+				border: none;
+				color: #c9ab5f;
+				text-decoration: none;
+				font-size: 0.95rem;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				border-radius: 8px;
+				cursor: pointer;
+				flex-shrink: 0;
+			}
+			
+			.back-button:hover {
+				background-color: rgba(201, 171, 95, 0.1);
+				color: #c9ab5f;
+			}
+			
+			.back-button i {
+				font-size: 0.9rem;
+			}
+			
+			.navbar-title {
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				margin: 0;
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: #333;
+				white-space: nowrap;
+			}
+			
+			.navbar-spacer {
+				width: 80px;
+				flex-shrink: 0;
+			}
+			
+			body {
+				padding-top: 55px;
+			}
+			
+			.navbar-container {
+				padding: 0.875rem 1rem;
+			}
+			
+			.back-button {
+				padding: 0.4rem 0.75rem;
+				font-size: 0.9rem;
+			}
+			
+			.navbar-title {
+				font-size: 1rem;
+			}
+			
+			/* Blessing Form Styles - จำกัดความกว้างเหมือน mobile */
+			/* Override wrapper styles from main.css */
+			body #wrapper {
+				max-width: 100% !important;
+				background-color: transparent !important;
+			}
+			
+			#blessing-form-section {
+				padding: 1.5rem 0;
+			}
+			
+			/* Override wrapper styles */
+			#blessing-form-section.wrapper.style1 {
+				max-width: 100% !important;
+				padding: 1.5rem 0 !important;
+				width: 100% !important;
+			}
+			
+			/* จำกัดความกว้างสูงสุดที่ 400px เหมือน mobile */
+			#blessing-form-section.wrapper.style1 > .inner,
+			#blessing-form-section .inner {
+				max-width: 400px !important;
+				width: 100% !important;
+				margin: 0 auto !important;
+				padding: 1.5rem !important;
+				background-color: rgba(255, 255, 255, 0.95) !important;
+				border-radius: 12px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+				box-sizing: border-box;
+			}
+			
+			/* สำหรับหน้าจอเล็กมาก */
+			@media screen and (max-width: 450px) {
+				#blessing-form-section .inner {
+					max-width: calc(100% - 1.5rem) !important;
+					margin: 0 0.75rem !important;
+				}
+			}
+			
+			/* ใช้ mobile styles เป็น default - ทำให้ desktop เหมือน mobile */
+			body {
+				font-size: 11pt !important;
+				background-image: url('images/wallpaper.png') !important;
+				background-size: cover !important;
+				background-position: center !important;
+				background-repeat: no-repeat !important;
+				background-attachment: fixed !important;
+				background-color: transparent !important;
+			}
+			
+			#blessing-form-section {
+				padding: 1rem 0 !important;
+			}
+			
+			#blessing-form-section .inner {
+				padding: 1.25rem !important;
+				border-radius: 10px !important;
+			}
+			
+			#blessing-form-section h2 {
+				color: #c9ab5f;
+				margin-bottom: 0.5rem;
+				font-weight: 600;
+				font-size: 1.25rem !important;
+			}
+			
+			#blessing-form-section p {
+				font-size: 0.85rem !important;
+				margin-bottom: 1.25rem !important;
+			}
+			
+			.color-picker-group {
+				margin-bottom: 1rem !important;
+			}
+			
+			.color-picker-label {
+				display: block;
+				margin-bottom: 0.5rem;
+				font-weight: 500;
+				color: #333;
+				font-size: 0.9rem !important;
+			}
+			
+			.color-options {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem !important;
+				margin-bottom: 0.5rem;
+				justify-content: center;
+			}
+			
+			.color-option {
+				position: relative;
+				width: 35px !important;
+				height: 35px !important;
+				border-radius: 50%;
+				border: 2px solid transparent;
+				border-width: 2px !important;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+				flex-shrink: 0;
+			}
+			
+			.color-option:hover {
+				transform: scale(1.05) !important;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+			}
+			
+			.color-option.selected {
+				border-color: #c9ab5f;
+				transform: scale(1.1) !important;
+				box-shadow: 0 4px 16px rgba(201, 171, 95, 0.4);
+			}
+			
+			.color-option input[type="radio"] {
+				position: absolute;
+				opacity: 0;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+			}
+			
+			.color-option input[type="radio"]:checked + .color-check {
+				display: block;
+			}
+			
+			.color-check {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				color: #fff;
+				font-size: 0.9rem !important;
+				display: none;
+				text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+			}
+			
+			.preview-box {
+				margin-top: 1rem !important;
+				padding: 1rem !important;
+				border-radius: 8px !important;
+				border: 2px dashed rgba(201, 171, 95, 0.3);
+				min-height: 90px !important;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.3s ease;
+			}
+			
+			.preview-text {
+				font-size: 0.95rem !important;
+				line-height: 1.4 !important;
+				text-align: center;
+				word-wrap: break-word;
+				max-width: 100%;
+				padding: 0.5rem !important;
+			}
+			
+			.empty-preview {
+				color: #999;
+				font-style: italic;
+			}
+			
+			#blessing-form .field {
+				margin-bottom: 1rem !important;
+			}
+			
+			#blessing-form label {
+				display: block;
+				margin-bottom: 0.4rem !important;
+				font-weight: 500;
+				color: #333;
+				font-size: 0.9rem !important;
+				text-align: left;
+			}
+			
+			#blessing-form input[type="text"],
+			#blessing-form textarea {
+				width: 100%;
+				padding: 0.5rem 0.75rem !important;
+				border: 1px solid rgba(0, 0, 0, 0.2) !important;
+				border-radius: 6px !important;
+				font-size: 0.9rem !important;
+				font-family: inherit;
+				transition: all 0.3s ease;
+				box-sizing: border-box;
+				background-color: #ffffff;
+			}
+			
+			#blessing-form input[type="text"]:focus,
+			#blessing-form textarea:focus {
+				outline: none;
+				border-color: #c9ab5f;
+				box-shadow: 0 0 0 3px rgba(201, 171, 95, 0.1);
+			}
+			
+			#blessing-form textarea {
+				min-height: 90px !important;
+				resize: vertical;
+			}
+			
+			.error-message {
+				color: #e74c3c;
+				font-size: 0.875rem;
+				margin-top: 0.5rem;
+				display: none;
+			}
+			
+			
+			ul.actions.special {
+				margin-top: 1.5rem !important;
+				width: 100% !important;
+				padding: 0 !important;
+			}
+			
+			ul.actions.special li {
+				width: 100% !important;
+				margin: 0 !important;
+			}
+			
+			ul.actions.special button {
+				width: 100% !important;
+				box-sizing: border-box !important;
+				font-size: 0.9rem !important;
+				padding: 0.75rem 1.5rem !important;
+				height: auto !important;
+				line-height: 1.5 !important;
+				border-radius: 8px !important;
+			}
+			
+			.button.large {
+				font-size: 0.9rem !important;
+				padding: 0.75rem 1.5rem !important;
+				width: 100% !important;
+				box-sizing: border-box !important;
+				height: auto !important;
+				line-height: 1.5 !important;
+				border-radius: 8px !important;
+			}
+			
+			.blessing-modal {
+				display: none;
+				position: fixed;
+				z-index: 10000;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				align-items: center;
+				justify-content: center;
+				animation: fadeIn 0.3s ease;
+			}
+			
+			.blessing-modal-content {
+				background-color: #ffffff;
+				border-radius: 12px;
+				padding: 1.5rem;
+				max-width: 90%;
+				width: 90%;
+				text-align: center;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+				animation: slideUp 0.3s ease;
+				position: relative;
+				margin: 1rem;
+			}
+			
+			.blessing-modal-close {
+				position: absolute;
+				top: 0.75rem;
+				right: 0.75rem;
+				color: #999;
+				font-size: 1.75rem;
+				font-weight: bold;
+				cursor: pointer;
+				line-height: 1;
+			}
+			
+			.blessing-modal-close:hover {
+				color: #333;
+			}
+			
+			.blessing-modal-body {
+				padding: 1rem 0;
+			}
+			
+			.blessing-modal-body h3 {
+				margin: 1rem 0;
+				color: #333;
+				font-size: 1.1rem;
+			}
+			
+			.blessing-modal-body i {
+				font-size: 3rem !important;
+			}
+			
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			
+			@keyframes slideUp {
+				from { transform: translateY(20px); opacity: 0; }
+				to { transform: translateY(0); opacity: 1; }
+			}
+			
+			/* Responsive Styles - Only for smaller screens */
+			
+			@media screen and (max-width: 480px) {
+				#blessing-form-section {
+					padding: 1rem 0;
+				}
+				
+				#blessing-form-section .inner {
+					padding: 1.25rem;
+					margin: 0 0.75rem;
+					border-radius: 10px;
+				}
+				
+				#blessing-form-section h2 {
+					font-size: 1.25rem;
+					margin-bottom: 0.5rem;
+				}
+				
+				#blessing-form-section p {
+					font-size: 0.85rem;
+					margin-bottom: 1.25rem;
+				}
+				
+				.color-picker-group {
+					margin-bottom: 1rem;
+				}
+				
+				.color-picker-label {
+					font-size: 0.9rem;
+					margin-bottom: 0.5rem;
+				}
+				
+				.color-options {
+					gap: 0.5rem;
+					justify-content: center;
+				}
+				
+				.color-option {
+					width: 35px;
+					height: 35px;
+					border-width: 2px;
+				}
+				
+				.color-option:hover {
+					transform: scale(1.05);
+				}
+				
+				.color-option.selected {
+					transform: scale(1.1);
+				}
+				
+				.color-check {
+					font-size: 0.9rem;
+				}
+				
+				.preview-box {
+					margin-top: 1rem;
+					padding: 1rem;
+					min-height: 90px;
+					border-radius: 8px;
+				}
+				
+				.preview-text {
+					font-size: 0.95rem;
+					line-height: 1.4;
+					padding: 0.5rem;
+				}
+				
+				#blessing-form .field {
+					margin-bottom: 1rem;
+				}
+				
+				#blessing-form label {
+					font-size: 0.9rem;
+					margin-bottom: 0.4rem;
+					text-align: left;
+				}
+				
+				#blessing-form input[type="text"],
+				#blessing-form textarea {
+					padding: 0.5rem 0.75rem;
+					font-size: 0.9rem;
+					border-radius: 6px;
+				}
+				
+				#blessing-form textarea {
+					min-height: 90px;
+				}
+				
+				ul.actions.special {
+					margin-top: 1.5rem !important;
+					width: 100% !important;
+					padding: 0 !important;
+				}
+				
+				ul.actions.special li {
+					width: 100% !important;
+					margin: 0 !important;
+				}
+				
+				.button.large {
+					font-size: 0.9rem !important;
+					padding: 0.75rem 1.5rem !important;
+					width: 100% !important;
+					box-sizing: border-box !important;
+					height: auto !important;
+					line-height: 1.5 !important;
+					border-radius: 8px !important;
+				}
+				
+				.blessing-modal-content {
+					padding: 1.25rem;
+					max-width: 95%;
+					margin: 0.5rem;
+					border-radius: 10px;
+				}
+				
+				.blessing-modal-close {
+					top: 0.5rem;
+					right: 0.5rem;
+					font-size: 1.5rem;
+				}
+				
+				.blessing-modal-body {
+					padding: 0.75rem 0;
+				}
+				
+				.blessing-modal-body h3 {
+					font-size: 1rem;
+					margin: 0.75rem 0;
+				}
+				
+				.blessing-modal-body i {
+					font-size: 2.5rem !important;
+					margin-bottom: 0.75rem !important;
+				}
+			}
+			
+			@media screen and (max-width: 360px) {
+				#blessing-form-section .inner {
+					padding: 1rem;
+					margin: 0 0.5rem;
+				}
+				
+				.color-option {
+					width: 32px;
+					height: 32px;
+				}
+				
+				.color-check {
+					font-size: 0.8rem;
+				}
+				
+				.preview-box {
+					padding: 0.75rem;
+					min-height: 80px;
+				}
+				
+				.preview-text {
+					font-size: 0.85rem;
+				}
+			}
+		</style>
 		
 	</head>
-	<body class="is-preload force-mobile">
+	<body class="is-preload">
+
+		<!-- Navbar -->
+		<nav class="navbar">
+			<div class="navbar-container">
+				<a href="index.html" class="back-button" aria-label="กลับไปหน้าแรก">
+					<i class="fas fa-arrow-left"></i>
+					<span>กลับไปหน้าหลัก</span>
+				</a>
+			
+				<div class="navbar-spacer"></div>
+			</div>
+		</nav>
 
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
 
-				<!-- One -->
-					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
-						
-					<p style="margin-top: 2rem;">Comming Soon...</p>
-								</section>
-
-				<!-- Footer -->
-					<footer class="wrapper style1 align-center">
+				<!-- Blessing Form -->
+					<section class="wrapper style1 align-center onscroll-fade-in" id="blessing-form-section">
 						<div class="inner">
-						
-							<p>&copy; MARKSAI. WEDDING</p>
-						</div>
-					</footer>
+							<h2>เขียนคำอวยพร</h2>
+							<p style="margin-top: 1rem; font-size: 0.95rem; color: #888; font-style: italic; margin-bottom: 2rem;">
+								ส่งคำอวยพรและความรักเล็ก ๆ กลับมาหาเรา
+							</p>
+							
+							<form id="blessing-form" method="POST" action="#" novalidate>
+								<div class="field">
+									<label for="blesser-name">ชื่อผู้อวยพร <span style="color: #c9ab5f;">*</span></label>
+									<input type="text" name="blesser-name" id="blesser-name" placeholder="กรุณากรอกชื่อของคุณ" required />
+									<span class="error-message" id="name-error"></span>
+								</div>
 
+								<div class="field">
+									<label for="blessing-message">ช่องกรอกคำอวยพร <span style="color: #c9ab5f;">*</span></label>
+									<textarea name="blessing-message" id="blessing-message" placeholder="เขียนคำอวยพรของคุณที่นี่..." required></textarea>
+									<span class="error-message" id="message-error"></span>
+								</div>
+
+								<div class="field">
+									<div class="color-picker-group">
+										<label class="color-picker-label">เลือกสีพื้นหลัง</label>
+										<div class="color-options" id="bg-color-options">
+											<!-- Background colors will be generated by JavaScript -->
+										</div>
+									</div>
+								</div>
+
+								<div class="field">
+									<label>ตัวอย่างคำอวยพร</label>
+									<div class="preview-box" id="preview-box">
+										<div class="preview-text empty-preview" id="preview-text">
+											กรอกข้อมูลเพื่อดูตัวอย่าง
+										</div>
+									</div>
+								</div>
+
+								<ul class="actions special" style="margin-top: 2rem;">
+									<li><button type="submit" class="button large" style="background-color: #c9ab5f; color: #ffffff !important;">ส่งคำอวยพร</button></li>
+								</ul>
+								
+							</form>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Success Modal -->
+		<div id="success-modal" class="blessing-modal" style="display: none;">
+			<div class="blessing-modal-content">
+				<span class="blessing-modal-close">&times;</span>
+				<div class="blessing-modal-body">
+					<i class="fas fa-heart" style="font-size: 4rem; color: #c9ab5f; margin-bottom: 1rem;"></i>
+					<h3>ขอบคุณสำหรับคำอวยพร</h3>
+					<h3>ของคุณ</h3>
+					
+					<button class="button large" onclick="closeSuccessModal()" style="margin-top: 1.5rem; background-color: #c9ab5f; color: #ffffff !important;">ปิด</button>
+				</div>
+			</div>
 			</div>
 
 		<!-- Scripts -->
@@ -44,7 +664,244 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-		
+			<!-- Blessing Form Script -->
+			<script>
+				// Background color options only (text color is fixed to white)
+				// Colors are darker for better contrast with white text
+				const bgColors = [
+									{ name: 'ชมพูอ่อน', value: '#f06292', class: 'light-pink' },
+
+					{ name: 'ฟ้า', value: '#2196f3', class: 'blue' },
+					{ name: 'ม่วง', value: '#9c27b0', class: 'purple' },
+					{ name: 'เขียว', value: '#4caf50', class: 'green' },
+					{ name: 'เหลือง', value: '#ff9800', class: 'yellow' },
+					{ name: 'ส้ม', value: '#ff5722', class: 'orange' },
+						{ name: 'ชมพู', value: '#e91e63', class: 'pink' },
+				];
+
+				// Default colors (text color is always white, cannot be changed)
+				const selectedTextColor = '#ffffff'; // white - fixed, not changeable
+				let selectedBgColor = '#f06292'; // pink
+
+				// Initialize color pickers (only background color)
+				function initColorPickers() {
+					const bgColorOptions = document.getElementById('bg-color-options');
+
+					// Generate background color options
+					bgColors.forEach((color, index) => {
+						const option = document.createElement('div');
+						option.className = 'color-option' + (color.value === selectedBgColor ? ' selected' : '');
+						option.style.backgroundColor = color.value;
+						option.setAttribute('data-color', color.value);
+						option.setAttribute('title', color.name);
+						
+						const radio = document.createElement('input');
+						radio.type = 'radio';
+						radio.name = 'bg-color';
+						radio.value = color.value;
+						radio.id = 'bg-color-' + index;
+						if (color.value === selectedBgColor) {
+							radio.checked = true;
+						}
+						
+						const check = document.createElement('i');
+						check.className = 'fas fa-check color-check';
+						
+						option.appendChild(radio);
+						option.appendChild(check);
+						bgColorOptions.appendChild(option);
+					});
+
+					// Add click handlers for background color only
+					document.querySelectorAll('#bg-color-options .color-option').forEach(option => {
+						option.addEventListener('click', function() {
+							const radio = this.querySelector('input[type="radio"]');
+							radio.checked = true;
+							selectedBgColor = radio.value;
+							updateColorSelection('bg-color-options', selectedBgColor);
+							updatePreview();
+						});
+					});
+				}
+
+				function updateColorSelection(containerId, selectedColor) {
+					document.querySelectorAll('#' + containerId + ' .color-option').forEach(option => {
+						const radio = option.querySelector('input[type="radio"]');
+						if (radio && radio.value === selectedColor) {
+							option.classList.add('selected');
+							radio.checked = true;
+						} else {
+							option.classList.remove('selected');
+						}
+					});
+				}
+
+				function updatePreview() {
+					const previewBox = document.getElementById('preview-box');
+					const previewText = document.getElementById('preview-text');
+					const message = document.getElementById('blessing-message').value.trim();
+
+					previewBox.style.backgroundColor = selectedBgColor;
+					previewText.style.color = selectedTextColor;
+
+					if (message) {
+						previewText.textContent = message;
+						previewText.classList.remove('empty-preview');
+					} else {
+						previewText.textContent = 'กรอกข้อมูลเพื่อดูตัวอย่าง';
+						previewText.classList.add('empty-preview');
+					}
+				}
+
+				// Form validation and submission
+				document.addEventListener('DOMContentLoaded', function() {
+					initColorPickers();
+					updatePreview();
+
+					// Update preview on message change
+					document.getElementById('blessing-message').addEventListener('input', updatePreview);
+
+					// Form submission
+					var form = document.getElementById('blessing-form');
+					form.addEventListener('submit', function(e) {
+						e.preventDefault();
+						
+						// Clear previous errors
+						clearErrors();
+						
+						// Validate
+						var name = document.getElementById('blesser-name').value.trim();
+						var message = document.getElementById('blessing-message').value.trim();
+						var isValid = true;
+
+						// Validate name
+						if (!name || name.length < 2) {
+							showError('name-error', 'กรุณากรอกชื่อของคุณ (อย่างน้อย 2 ตัวอักษร)');
+							isValid = false;
+						}
+
+						// Validate message
+						if (!message || message.length < 5) {
+							showError('message-error', 'กรุณาเขียนคำอวยพร (อย่างน้อย 5 ตัวอักษร)');
+							isValid = false;
+						}
+
+						if (!isValid) {
+							return;
+						}
+
+						// Prepare data
+						var formData = {
+							name: name,
+							message: message,
+							textColor: selectedTextColor,
+							backgroundColor: selectedBgColor
+						};
+
+						// Submit to API
+						submitBlessing(formData);
+					});
+				});
+
+				function showError(id, message) {
+					var errorEl = document.getElementById(id);
+					if (errorEl) {
+						errorEl.textContent = message;
+						errorEl.style.display = 'block';
+					}
+				}
+
+				function clearErrors() {
+					var errors = document.querySelectorAll('.error-message');
+					errors.forEach(function(error) {
+						error.textContent = '';
+						error.style.display = 'none';
+					});
+				}
+
+				function submitBlessing(data) {
+					// API endpoint
+					var apiUrl = '/api/blessing';
+					
+					// Show loading state
+					var submitButton = document.querySelector('button[type="submit"]');
+					var originalButtonText = submitButton.innerHTML;
+					submitButton.disabled = true;
+					submitButton.innerHTML = '<p style="font-weight: 700;">กำลังส่ง...</p>';
+					
+					// Submit to API
+					fetch(apiUrl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data)
+					})
+					.then(response => {
+						if (!response.ok) {
+							return response.json().then(err => Promise.reject(err));
+						}
+						return response.json();
+					})
+					.then(result => {
+						if (result.success) {
+							showSuccessModal();
+							document.getElementById('blessing-form').reset();
+							// Reset to default colors (text color is always white)
+							selectedBgColor = '#f06292';
+							updateColorSelection('bg-color-options', selectedBgColor);
+							updatePreview();
+						} else {
+							alert('เกิดข้อผิดพลาด: ' + (result.message || 'กรุณาลองใหม่อีกครั้ง'));
+						}
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						var errorMessage = error.message || 'กรุณาลองใหม่อีกครั้ง';
+						if (error.error === 'Validation error') {
+							errorMessage = error.message || 'กรุณาตรวจสอบข้อมูลที่กรอก';
+						} else if (error.error === 'Database error') {
+							errorMessage = 'เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง';
+						}
+						alert('เกิดข้อผิดพลาด: ' + errorMessage);
+					})
+					.finally(function() {
+						// Restore button state
+						submitButton.disabled = false;
+						submitButton.innerHTML = originalButtonText;
+					});
+				}
+
+				function showSuccessModal() {
+					var modal = document.getElementById('success-modal');
+					modal.style.display = 'flex';
+				}
+
+				function closeSuccessModal() {
+					var modal = document.getElementById('success-modal');
+					modal.style.display = 'none';
+					// Redirect back to home page
+					setTimeout(function() {
+						window.location.href = 'index.html';
+					}, 300);
+				}
+
+				// Close modal when clicking outside
+				window.onclick = function(event) {
+					var modal = document.getElementById('success-modal');
+					if (event.target == modal) {
+						closeSuccessModal();
+					}
+				}
+
+				// Close button
+				document.addEventListener('DOMContentLoaded', function() {
+					var closeBtn = document.querySelector('.blessing-modal-close');
+					if (closeBtn) {
+						closeBtn.onclick = closeSuccessModal;
+					}
+				});
+			</script>
 
 	</body>
 </html>

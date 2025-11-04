@@ -12,9 +12,332 @@
 		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				background-image: url('images/wallpaper.png');
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+			}
+			
+			.navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				width: 100%;
+				background-color: #ffffff;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+				z-index: 1000;
+				padding: 0;
+			}
+			
+			.navbar-container {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 1rem 1.5rem;
+				max-width: 100%;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			.back-button {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.5rem 1rem;
+				background-color: transparent;
+				border: none;
+				color: #c9ab5f;
+				text-decoration: none;
+				font-size: 0.95rem;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				border-radius: 8px;
+				cursor: pointer;
+				flex-shrink: 0;
+			}
+			
+			.back-button:hover {
+				background-color: rgba(201, 171, 95, 0.1);
+				color: #c9ab5f;
+			}
+			
+			.back-button i {
+				font-size: 0.9rem;
+			}
+			
+			.navbar-title {
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				margin: 0;
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: #333;
+				white-space: nowrap;
+			}
+			
+			.navbar-spacer {
+				width: 80px;
+				flex-shrink: 0;
+			}
+			
+			/* Spacer for navbar */
+			body {
+				padding-top: 60px;
+				font-size: 11pt !important;
+			}
+			
+			@media screen and (max-width: 736px) {
+				.navbar-container {
+					padding: 0.875rem 1rem;
+				}
+				
+				.back-button {
+					padding: 0.4rem 0.75rem;
+					font-size: 0.9rem;
+				}
+				
+				.navbar-title {
+					font-size: 1rem;
+				}
+				
+				body {
+					padding-top: 55px;
+				}
+			}
+			
+			/* RSVP Form Styles - จำกัดความกว้างเหมือน mobile */
+			/* Override wrapper styles from main.css */
+			body #wrapper {
+				max-width: 100% !important;
+			}
+			
+			/* Override wrapper styles */
+			#rsvp-form-section.wrapper.style1 {
+				max-width: 100% !important;
+				padding: 1.5rem 0 !important;
+				width: 100% !important;
+			}
+			
+			/* จำกัดความกว้างสูงสุดที่ 400px เหมือน mobile */
+			#rsvp-form-section.wrapper.style1 > .inner,
+			#rsvp-form-section .inner {
+				max-width: 400px !important;
+				width: 100% !important;
+				margin: 0 auto !important;
+				padding: 1.5rem !important;
+				background-color: rgba(255, 255, 255, 0.95) !important;
+				border-radius: 12px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+				box-sizing: border-box;
+			}
+			
+			/* สำหรับหน้าจอเล็กมาก */
+			@media screen and (max-width: 450px) {
+				#rsvp-form-section .inner {
+					max-width: calc(100% - 1.5rem) !important;
+					margin: 0 0.75rem !important;
+				}
+			}
+			
+			/* ใช้ mobile styles เป็น default - ทำให้ desktop เหมือน mobile */
+			#rsvp-form-section {
+				padding: 1rem 0 !important;
+			}
+			
+			#rsvp-form-section .inner {
+				padding: 1.25rem !important;
+				border-radius: 10px !important;
+			}
+			
+			#rsvp-form-section h2 {
+				color: #c9ab5f;
+				margin-bottom: 0.5rem;
+				font-weight: 600;
+				font-size: 1.25rem !important;
+			}
+			
+			#rsvp-form-section p {
+				font-size: 0.85rem !important;
+				margin-bottom: 1.25rem !important;
+			}
+			
+			#rsvp-form .field {
+				margin-bottom: 1rem !important;
+			}
+			
+			#rsvp-form label {
+				display: block;
+				margin-bottom: 0.4rem !important;
+				font-weight: 500;
+				color: #333;
+				font-size: 0.9rem !important;
+				text-align: left;
+			}
+			
+			#rsvp-form input[type="text"],
+			#rsvp-form select {
+				width: 100%;
+				padding: 0.5rem 0.75rem !important;
+				border: 1px solid rgba(0, 0, 0, 0.2) !important;
+				border-radius: 6px !important;
+				font-size: 0.9rem !important;
+				font-family: inherit;
+				transition: all 0.3s ease;
+				box-sizing: border-box;
+				background-color: #ffffff;
+			}
+			
+			#rsvp-form input[type="text"]:focus,
+			#rsvp-form select:focus {
+				outline: none;
+				border-color: #c9ab5f;
+				box-shadow: 0 0 0 3px rgba(201, 171, 95, 0.1);
+			}
+			
+			.radio-group {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+				margin-top: 0.5rem;
+			}
+			
+			.radio-group input[type="radio"] {
+				margin-right: 0.5rem;
+				cursor: pointer;
+			}
+			
+			.radio-group label {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				font-size: 0.9rem !important;
+				margin-bottom: 0 !important;
+			}
+			
+			.error-message {
+				color: #e74c3c;
+				font-size: 0.875rem;
+				margin-top: 0.5rem;
+				display: none;
+			}
+			
+			ul.actions.special {
+				margin-top: 1.5rem !important;
+				width: 100% !important;
+				padding: 0 !important;
+			}
+			
+			ul.actions.special li {
+				width: 100% !important;
+				margin: 0 !important;
+			}
+			
+			ul.actions.special button {
+				width: 100% !important;
+				box-sizing: border-box !important;
+				font-size: 0.9rem !important;
+				padding: 0.75rem 1.5rem !important;
+				height: auto !important;
+				line-height: 1.5 !important;
+				border-radius: 8px !important;
+			}
+			
+			.button.large {
+				font-size: 0.9rem !important;
+				padding: 0.75rem 1.5rem !important;
+				width: 100% !important;
+				box-sizing: border-box !important;
+				height: auto !important;
+				line-height: 1.5 !important;
+				border-radius: 8px !important;
+			}
+			
+			.rsvp-modal {
+				display: none;
+				position: fixed;
+				z-index: 10000;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				align-items: center;
+				justify-content: center;
+				animation: fadeIn 0.3s ease;
+			}
+			
+			.rsvp-modal-content {
+				background-color: #ffffff;
+				border-radius: 12px;
+				padding: 1.5rem;
+				max-width: 90%;
+				width: 90%;
+				text-align: center;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+				animation: slideUp 0.3s ease;
+				position: relative;
+				margin: 1rem;
+			}
+			
+			.rsvp-modal-close {
+				position: absolute;
+				top: 0.75rem;
+				right: 0.75rem;
+				color: #999;
+				font-size: 1.75rem;
+				font-weight: bold;
+				cursor: pointer;
+				line-height: 1;
+			}
+			
+			.rsvp-modal-close:hover {
+				color: #333;
+			}
+			
+			.rsvp-modal-body {
+				padding: 1rem 0;
+			}
+			
+			.rsvp-modal-body h3 {
+				margin: 1rem 0;
+				color: #333;
+				font-size: 1.1rem;
+			}
+			
+			.rsvp-modal-body i {
+				font-size: 3rem !important;
+			}
+			
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			
+			@keyframes slideUp {
+				from { transform: translateY(20px); opacity: 0; }
+				to { transform: translateY(0); opacity: 1; }
+			}
+		</style>
 		
 	</head>
-	<body class="is-preload force-mobile">
+	<body class="is-preload">
+
+		<!-- Navbar -->
+		<nav class="navbar">
+			<div class="navbar-container">
+				<a href="index.html" class="back-button" aria-label="กลับไปหน้าแรก">
+					<i class="fas fa-arrow-left"></i>
+					<span>กลับไปหน้าหลัก</span>
+				</a>
+			
+				<div class="navbar-spacer"></div>
+			</div>
+		</nav>
 
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
@@ -23,11 +346,19 @@
 					<section class="wrapper style1 align-center onscroll-fade-in" id="rsvp-form-section">
 						<div class="inner">
 							<h2>ลงทะเบียนเข้าร่วมงาน</h2>
-							<p class="intro-text">
-								เรายินดีอย่างยิ่งหากคุณจะมาร่วมแบ่งปันความสุขในวันพิเศษนี้
+							<p  style="margin-top: 1rem;  
+						
+								font-size: 0.95rem;
+								color: #888;
+								font-style: italic;
+								margin: 0;
+								text-align: center;
+							">
+								อยากให้คุณมาร่วมสร้างความทรงจำดีๆ ในวันสำคัญของเรา
 							</p>
 							
-							<form id="rsvp-form" method="POST" action="#" novalidate>
+							
+							<form style="margin-top: 1rem;  " id="rsvp-form" method="POST" action="#" novalidate>
 								<div class="field">
 									<label for="name">ชื่อ <span style="color: #c9ab5f;">*</span></label>
 									<input type="text" name="name" id="name" placeholder="กรุณากรอกชื่อของคุณ" required />
@@ -60,7 +391,7 @@
 								</div>
 
 								<ul class="actions special" style="margin-top: 2rem;">
-									<li><button type="submit" class="button large"><p style="font-weight: 700;">ยืนยัน</p></button></li>
+									<li><button type="submit" class="button large" style="background-color: #c9ab5f; color: #ffffff !important;">ยืนยัน</button></li>
 								</ul>
 							</form>
 						</div>
@@ -174,7 +505,7 @@
 					var submitButton = document.querySelector('button[type="submit"]');
 					var originalButtonText = submitButton.innerHTML;
 					submitButton.disabled = true;
-					submitButton.innerHTML = '<p style="font-weight: 700;">กำลังส่ง...</p>';
+					submitButton.innerHTML = 'กำลังส่ง...';
 					
 					// Submit to API
 					fetch(apiUrl, {
