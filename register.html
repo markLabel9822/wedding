@@ -202,23 +202,50 @@
 			.radio-group {
 				display: flex;
 				flex-direction: column;
-				gap: 0.4rem !important;
+				gap: 0 !important;
 				margin-top: 0.5rem;
+				line-height: 1.2 !important;
 			}
 			
+			/* จัด radio + label เป็นคู่ */
 			.radio-group input[type="radio"] {
-				margin-right: 0.5rem;
+				margin: 0 0.5rem 0 0 !important;
 				cursor: pointer;
 				width: 1.2rem !important;
 				height: 1.2rem !important;
+				flex-shrink: 0;
+				display: inline-block;
+				vertical-align: middle;
+				line-height: 1.2 !important;
 			}
 			
 			.radio-group label {
-				display: flex;
+				display: inline-flex;
 				align-items: center;
 				cursor: pointer;
 				font-size: 1rem !important;
+				margin: 0 !important;
+				padding-left:2.5rem !important;
+				padding-top:0.1rem !important;
+				
+				line-height: 1.2 !important;
+				vertical-align: middle;
+			}
+			
+			/* ควบคุม spacing ระหว่าง radio options */
+			.radio-group input[type="radio"]:first-of-type + label {
+				margin-bottom: 0.1rem !important;
+			}
+			
+			/* เอา margin-bottom ออกจาก radio ทั้งหมด */
+			.radio-group input[type="radio"] {
 				margin-bottom: 0 !important;
+				margin-top: 0 !important;
+			}
+			
+			/* radio ตัวที่สอง ให้ชิด label ตัวแรก */
+			.radio-group input[type="radio"]:nth-of-type(2) {
+				margin-top: -0.1rem !important;
 			}
 			
 			.error-message {
