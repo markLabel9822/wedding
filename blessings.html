@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<!--
+	Blessings/Guestbook Page
+-->
+<html>
+	<head>
+		<title>สมุดอวยพรดิจิตอล — Mark & Sai Wedding</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+		<style>
+			body {
+				background-image: url('images/wallpaper.png') !important;
+				background-size: cover !important;
+				background-position: center !important;
+				background-repeat: no-repeat !important;
+				background-attachment: fixed !important;
+				background-color: transparent !important;
+			}
+			
+			.navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				width: 100%;
+				background-color: #ffffff;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+				z-index: 1000;
+				padding: 0;
+			}
+			
+			.navbar-container {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 1rem 1.5rem;
+				max-width: 100%;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			.back-button {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.5rem 1rem;
+				background-color: transparent;
+				border: none;
+				color: #c9ab5f;
+				text-decoration: none;
+				font-size: 0.95rem;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				border-radius: 8px;
+				cursor: pointer;
+				flex-shrink: 0;
+			}
+			
+			.back-button:hover {
+				background-color: rgba(201, 171, 95, 0.1);
+				color: #c9ab5f;
+			}
+			
+			.back-button i {
+				font-size: 0.9rem;
+			}
+			
+			.navbar-spacer {
+				width: 80px;
+				flex-shrink: 0;
+			}
+			
+			body {
+				padding-top: 55px;
+			}
+			
+			.navbar-container {
+				padding: 0.875rem 1rem;
+			}
+			
+			.back-button {
+				padding: 0.4rem 0.75rem;
+				font-size: 0.9rem;
+			}
+			
+			/* Blessings Grid Styles */
+			.blessings-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				gap: 1rem;
+				padding: 1rem 0;
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+			
+			.blessing-card {
+				background-color: #fff;
+				border-radius: 12px;
+				padding: 1rem;
+				min-height: 120px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+			}
+			
+			.blessing-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			}
+			
+			.blessing-message {
+				font-size: 0.9rem;
+				line-height: 1.4;
+				margin-bottom: 0.5rem;
+				flex-grow: 1;
+			}
+			
+			.blessing-name {
+				font-size: 0.85rem;
+				font-weight: 600;
+				margin-top: 0.5rem;
+				opacity: 0.9;
+			}
+			
+			#blessings-section {
+				padding: 2rem 0;
+			}
+			
+			#blessings-section .inner {
+				max-width: 100%;
+				padding: 2rem 1rem;
+			}
+			
+			#blessings-section h2 {
+				margin-bottom: 1.5rem;
+				font-size: 28px;
+				letter-spacing: 1px;
+				font-weight: 700;
+				color: #333;
+			}
+			
+			/* Responsive adjustments */
+			@media screen and (max-width: 768px) {
+				.blessings-grid {
+					grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+					gap: 0.75rem;
+					padding: 0.75rem 0;
+				}
+				
+				.blessing-card {
+					min-height: 100px;
+					padding: 0.75rem;
+				}
+				
+				.blessing-message {
+					font-size: 0.85rem;
+				}
+				
+				.blessing-name {
+					font-size: 0.8rem;
+				}
+			}
+			
+			@media screen and (max-width: 480px) {
+				.blessings-grid {
+					grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+					gap: 0.5rem;
+				}
+				
+				.blessing-card {
+					min-height: 90px;
+					padding: 0.65rem;
+				}
+			}
+		</style>
+		
+	</head>
+	<body class="is-preload">
+
+		<!-- Navbar -->
+		<nav class="navbar">
+			<div class="navbar-container">
+				<a href="index.html" class="back-button" aria-label="กลับไปหน้าแรก">
+					<i class="fas fa-arrow-left"></i>
+					<span>กลับไปหน้าหลัก</span>
+				</a>
+			
+				<div class="navbar-spacer"></div>
+			</div>
+		</nav>
+
+		<!-- Wrapper -->
+		<div id="wrapper" class="divided">
+
+			<!-- Blessings Display Section -->
+			<section class="wrapper style1 align-center onscroll-fade-in" id="blessings-section">
+				<div class="inner">
+					<h2>สมุดอวยพรดิจิตอล</h2>
+					<div id="blessings-container" class="blessings-grid">
+						<!-- Blessings will be loaded here -->
+					</div>
+					<div id="blessings-loading" style="text-align: center; padding: 2rem; color: #888;">
+						กำลังโหลดคำอวยพร...
+					</div>
+					<div id="blessings-error" style="display: none; text-align: center; padding: 2rem; color: #e74c3c;">
+						ไม่สามารถโหลดคำอวยพรได้ กรุณาลองใหม่อีกครั้ง
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<!-- Load Blessings -->
+		<script>
+			// Load blessings from API
+			async function loadBlessings() {
+				const container = document.getElementById('blessings-container');
+				const loading = document.getElementById('blessings-loading');
+				const error = document.getElementById('blessings-error');
+				
+				try {
+					// Show loading state
+					loading.style.display = 'block';
+					error.style.display = 'none';
+					container.innerHTML = '';
+					
+					// Fetch blessings from API
+					const response = await fetch('/api/blessings');
+					
+					if (!response.ok) {
+						throw new Error('Failed to load blessings');
+					}
+					
+					const result = await response.json();
+					
+					if (result.success && result.data && result.data.length > 0) {
+						// Hide loading
+						loading.style.display = 'none';
+						
+						// Render blessings
+						result.data.forEach(blessing => {
+							const card = document.createElement('div');
+							card.className = 'blessing-card';
+							card.style.backgroundColor = blessing.background_color || '#ffd1dc';
+							card.style.color = blessing.text_color || '#000000';
+							
+							const message = document.createElement('div');
+							message.className = 'blessing-message';
+							message.textContent = blessing.message || '';
+							message.style.color = blessing.text_color || '#000000';
+							
+							const name = document.createElement('div');
+							name.className = 'blessing-name';
+							name.textContent = blessing.name || '';
+							name.style.color = blessing.text_color || '#000000';
+							
+							card.appendChild(message);
+							card.appendChild(name);
+							container.appendChild(card);
+						});
+					} else {
+						// No blessings found
+						loading.style.display = 'none';
+						container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #888; grid-column: 1 / -1;">ยังไม่มีคำอวยพร</div>';
+					}
+				} catch (err) {
+					console.error('Error loading blessings:', err);
+					loading.style.display = 'none';
+					error.style.display = 'block';
+				}
+			}
+			
+			// Load blessings when page loads
+			document.addEventListener('DOMContentLoaded', function() {
+				loadBlessings();
+			});
+		</script>
+
+	</body>
+</html>
+
